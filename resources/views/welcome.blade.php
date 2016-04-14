@@ -223,8 +223,8 @@
 			if (desc != null) {
 				var url  = '/newmarker/'+latLng.lat()+'/'+latLng.lng()+'/'+encodeURIComponent(desc);
 				$.get(url, function (data) {
-					reloadMarkers(data);
 					console.log(data);
+					reloadMarkers(data);
 				});
 			}
 
@@ -233,7 +233,7 @@
 			$.get('/removemarker/' + id, function () {
 				$.get("/getmarkers", function (data) {
 					console.log(data);
-					reloadMarkers(data.markers);
+					reloadMarkers(data);
 				});
 			});
 		}
@@ -293,8 +293,11 @@
 		}
 
 		function reloadMarkers(newMarkers) {
+			console.log('czyscimy');
 			clearMap();
+			console.log('ustawiamy ponownie');
 			placeMarkers(newMarkers);
+			console.log('skalujemy mape');
 			map.fitBounds(bounds);
 		}
 
