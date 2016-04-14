@@ -247,7 +247,6 @@
 			};
 			map = new google.maps.Map(mapCanvas, mapOptions);
 			placeMarkers(markersToPut);
-			map.fitBounds(bounds);
 			google.maps.event.addListener(map, 'click', function (e) {
 				addMarker(e.latLng);
 			});
@@ -282,6 +281,8 @@
 				markers.push(marker);
 				bounds.extend(marker.position);
 			}
+			console.log('skalujemy mape');
+//			map.fitBounds(bounds);
 
 		}
 		function clearMap() {
@@ -289,7 +290,7 @@
 				markers[i].setMap(null);
 			}
 			markers = [];
-			bounds = new google.maps.LatLngBounds();
+//			bounds = new google.maps.LatLngBounds();
 		}
 
 		function reloadMarkers(newMarkers) {
@@ -297,8 +298,6 @@
 			clearMap();
 			console.log('ustawiamy ponownie');
 			placeMarkers(newMarkers);
-			console.log('skalujemy mape');
-			map.fitBounds(bounds);
 		}
 
 
