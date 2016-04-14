@@ -15,6 +15,25 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+
+Route::get('/getmarkers','WelcomeController@getMarkers');
+
+Route::get('/newmarker/{lat}/{lng}/{desc}', 'WelcomeController@addNewMarker');
+
+//Route::get('/newmarker/{lat}/{lng}/{desc}', function($lat, $lng, $desc)
+//{
+//	$marker = new Marker;
+//	$marker->latitude =floatval($lat);
+//	$marker->longitude = floatval($lng);
+//	$marker->description = $desc;
+//	$marker->save();
+//	$markers = Marker::all()->toJson();
+//	return $markers;
+//});
+
+Route::get('/removemarker/{id}', 'WelcomeController@removeMarker');
+
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

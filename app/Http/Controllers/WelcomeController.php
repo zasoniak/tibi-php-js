@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Marker;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -28,9 +30,38 @@ class WelcomeController extends Controller {
 	 *
 	 * @return Response
 	 */
+
 	public function index()
 	{
-		return view('welcome');
+		$markers = Marker::all();
+		return view('welcome')->with('markers', $markers);
 	}
+
+
+    public function addNewMarker($lat, $lng, $desc)
+    {
+        $marker = new Marker;
+        $marker->latitude =floatval($lat);
+        $marker->longitude = floatval($lng);
+        $marker->description = $desc;
+        $marker->save();
+        return $this->getMarkers();
+    }
+
+
+
+	public function removeMarker($id)
+	{
+		$marker = Marker::find($id);
+		$marker->delete();
+	}
+
+	public function getMarkers()
+	{
+		$markers = Marker::all()->toJson();
+		return $markers;
+	}
+
+
 
 }
