@@ -8,5 +8,7 @@ class Marker extends Model
 
     protected $table = 'markers';
 
+    protected $fillable = ['latitude', 'longitude', 'description'];
+
 
 } 

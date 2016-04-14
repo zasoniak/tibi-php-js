@@ -18,18 +18,15 @@ Route::get('home', 'HomeController@index');
 
 Route::get('/getmarkers','WelcomeController@getMarkers');
 
-Route::get('/newmarker/{lat}/{lng}/{desc}', 'WelcomeController@addNewMarker');
+//Route::get('/newmarker/{lat}/{lng}/{desc}', 'WelcomeController@addNewMarker');
 
-//Route::get('/newmarker/{lat}/{lng}/{desc}', function($lat, $lng, $desc)
-//{
-//	$marker = new Marker;
-//	$marker->latitude =floatval($lat);
-//	$marker->longitude = floatval($lng);
-//	$marker->description = $desc;
-//	$marker->save();
+Route::get('/newmarker/{lat}/{lng}/{desc}', function($lat, $lng, $desc)
+{
+	$marker = Marker::create(['latitude' => $lat, 'longitude'=>$lng, 'description'=>$desc]);
+	return $marker;
 //	$markers = Marker::all()->toJson();
 //	return $markers;
-//});
+});
 
 Route::get('/removemarker/{id}', 'WelcomeController@removeMarker');
 
