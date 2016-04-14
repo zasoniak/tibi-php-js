@@ -309,7 +309,9 @@
 <div class="container">
 	<div class="content">
 		<div class="title">Mapka</div>
-		<div class="quote">Wyświetla obiekty zapisane w bazie danych</div>
+		<div class="quote"><b>Wyświetla obiekty zapisane w bazie danych</b></div>
+		<div class="quote">Kliknij na mapie, aby dodać nowy punkt.</div>
+		<div class="quote">Wybierz punkt, by dowiedzieć się więcej lub usunąć go.</div>
 	</div>
 </div>
 <div id="map">
