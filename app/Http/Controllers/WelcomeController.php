@@ -2,66 +2,61 @@
 
 use App\Marker;
 
-class WelcomeController extends Controller {
+class WelcomeController extends Controller
+{
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Welcome Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller renders the "marketing page" for the application and
+    | is configured to only allow guests. Like most of the other sample
+    | controllers, you are free to modify or remove it as you desire.
+    |
+    */
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest');
-	}
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Show the application welcome screen to the user.
+     *
+     * @return Response
+     */
 
-	public function index()
-	{
-		$markers = Marker::all();
-		return view('welcome')->with('markers', $markers);
-	}
+    public function index()
+    {
+        $markers = Marker::all();
+        return view('welcome')->with('markers', $markers);
+    }
 
 
     public function addNewMarker($lat, $lng, $desc)
     {
-        $marker = new Marker;
-        $marker->latitude =floatval($lat);
-        $marker->longitude = floatval($lng);
-        $marker->description = $desc;
-        $marker->save();
+        Marker::create(['latitude' => $lat, 'longitude' => $lng, 'description' => $desc]);
         return $this->getMarkers();
     }
 
 
+    public function removeMarker($id)
+    {
+        $marker = Marker::find($id);
+        $marker->delete();
+    }
 
-	public function removeMarker($id)
-	{
-		$marker = Marker::find($id);
-		$marker->delete();
-	}
-
-	public function getMarkers()
-	{
-		$markers = Marker::all()->toJson();
-		return $markers;
-	}
-
+    public function getMarkers()
+    {
+        $markers = Marker::all()->toJson();
+        return $markers;
+    }
 
 
 }

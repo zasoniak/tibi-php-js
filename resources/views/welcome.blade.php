@@ -222,11 +222,9 @@
 			var desc = prompt("Podaj opis", "Nieznane miejsce");
 			if (desc != null) {
 				var url  = '/newmarker/'+latLng.lat()+'/'+latLng.lng()+'/'+encodeURIComponent(desc);
-				$.get(url, function () {
-					$.get("/getmarkers", function (data) {
-						console.log(data);
-						reloadMarkers(data.markers);
-					});
+				$.get(url, function (data) {
+					reloadMarkers(data);
+					console.log(data);
 				});
 			}
 
