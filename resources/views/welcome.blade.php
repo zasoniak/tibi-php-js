@@ -282,7 +282,7 @@
 				bounds.extend(marker.position);
 			}
 			console.log('skalujemy mape');
-//			map.fitBounds(bounds);
+			map.fitBounds(bounds);
 
 		}
 		function clearMap() {
@@ -290,7 +290,7 @@
 				markers[i].setMap(null);
 			}
 			markers = [];
-//			bounds = new google.maps.LatLngBounds();
+			bounds = new google.maps.LatLngBounds();
 		}
 
 		function reloadMarkers(newMarkers) {

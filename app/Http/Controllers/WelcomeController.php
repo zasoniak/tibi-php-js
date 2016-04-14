@@ -54,7 +54,7 @@ class WelcomeController extends Controller
 
     public function getMarkers()
     {
-        $markers = Marker::all()->toJson();
+        $markers = Marker::all();
         return $markers;
     }
 
